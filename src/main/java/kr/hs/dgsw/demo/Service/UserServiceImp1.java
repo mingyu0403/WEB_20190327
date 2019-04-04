@@ -38,6 +38,8 @@ public class UserServiceImp1 implements UserService{
                 .map(u -> {
                     u.setUsername(Optional.ofNullable(user.getUsername()).orElse(u.getUsername()));
                     u.setEmail(Optional.ofNullable(user.getEmail()).orElse(u.getEmail()));
+                    u.setProfileImagePath(Optional.ofNullable(user.getProfileImagePath()).orElse(u.getProfileImagePath()));
+                    u.setProfileImageName(Optional.ofNullable(user.getProfileImageName()).orElse(u.getProfileImageName()));
                     return this.userRepository.save(u);
                 })
                 .orElse(null);

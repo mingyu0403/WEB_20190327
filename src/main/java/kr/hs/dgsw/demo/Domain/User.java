@@ -19,6 +19,9 @@ public class User {
     @GeneratedValue
     private Long id;
 
+    private String profileImagePath;
+    private String profileImageName;
+
     private String username;
     private String email;
 
@@ -33,4 +36,10 @@ public class User {
         this.email = email;
     }
 
+    public User(String profileImagePath, String profileImageName, String username, String email) {
+        this.profileImagePath = profileImagePath;
+        this.profileImageName = profileImageName;
+        this.username = username;
+        this.email = email;
+    }
 }
