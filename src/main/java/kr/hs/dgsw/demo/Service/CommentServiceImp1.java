@@ -23,7 +23,9 @@ public class CommentServiceImp1 implements CommentService{
 
     @PostConstruct
     private void init(){
-        User u = this.userRepository.save(new User("aaa","aaa@dgsw"));
+        User u = this.userRepository.save(new User("aaa","abc", "123",
+                "D:/PORTFOLIO/DGSW/3Grade/WebPractice/WEB_20190326/upload/2019/04/08/120f4f83-c197-41ad-a9ae-c7a5940534a4_126735264BF78B7749.jpg",
+                "120f4f83-c197-41ad-a9ae-c7a5940534a4_126735264BF78B7749.jpg"));
         this.commentRepository.save(new Comment(u.getId(), "hi there 111"));
         this.commentRepository.save(new Comment(u.getId(), "hi there 222"));
         this.commentRepository.save(new Comment(u.getId(), "hi there 333"));
@@ -73,6 +75,8 @@ public class CommentServiceImp1 implements CommentService{
 
         Comment found = this.commentRepository.findById(comment.getId())
                 .map( c ->{
+                    c.setImagePath(Optional.ofNullable(comment.getImagePath()).orElse(c.getImagePath()));
+                    c.setImageName(Optional.ofNullable(comment.getImageName()).orElse(c.getImageName()));
                     c.setContent(Optional.ofNullable(comment.getContent()).orElse(c.getContent()));
                     c.setUserId(Optional.ofNullable(comment.getUserId()).orElse(c.getUserId()));
                     return this.commentRepository.save(c);

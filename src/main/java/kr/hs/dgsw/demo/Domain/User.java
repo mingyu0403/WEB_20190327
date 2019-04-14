@@ -24,6 +24,7 @@ public class User {
 
     private String username;
     private String email;
+    private String password;
 
     @CreationTimestamp
     private LocalDateTime joined;
@@ -31,9 +32,18 @@ public class User {
     @UpdateTimestamp
     private LocalDateTime modified;
 
-    public User(String username, String email){
+    public User(String username, String email, String password){
         this.username = username;
         this.email = email;
+        this.password = password;
+    }
+
+    public User(String username, String email, String password, String filePath, String fileName){
+        this.username = username;
+        this.email = email;
+        this.password = password;
+        this.profileImagePath = filePath;
+        this.profileImageName = fileName;
     }
 
     public User(String profileImagePath, String profileImageName, String username, String email) {

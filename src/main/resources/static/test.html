@@ -13,6 +13,7 @@
     <!-- 제목 -->
     <h1>View User and Comment</h1>
     <hr>
+    <button onclick="download()" download>다운로드</button>
 
     <!-- 유저 -->
     <h3>User</h3>
@@ -33,7 +34,58 @@
     <br>
     <div id="comment-display">글</div>
 
+
+    <style>
+        #login-container{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            position: fixed;
+            left: 0; top: 0;
+            width: 100vw; height: 100vh;
+            background-color: #00000088;
+        }
+        .login-dialog{
+            text-align: center;
+            background-color: white;
+            position:relative;
+            width: 300px;
+        }
+    </style>
+
+    <button onclick="openLoginDialog()">로그인</button>
+    <div id="container" style="display: none;">
+        <div id="login-container">
+            <div class="login-dialog">
+                <div style="margin: 30px 0 30px 0">로그인</div>
+                <div><input placeholder="사용자 아이디"></div>
+                <div><input placeholder="패스워드" type="password"></div>
+                <div style="margin: 30px 0 30px 0">
+                    <button>확인</button>
+                    <button onclick="closeLoginDialog()">취소</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
     <script>
+        // 로그인 버튼
+        function openLoginDialog() {
+            $('#container').show(400);
+        }
+        
+        // 로그인 취소
+        function closeLoginDialog() {
+            $('#container').hide(1000);
+        }
+
+
+        // 파일 다운로드
+        function download(){
+            window.location.assign('/attachment/1/1');
+        }
+
 
         // 유저 추가
         async function addNewUser() {
@@ -84,7 +136,7 @@
                             <div style="width: 70px">${user.id}</div>
                             <div style="width: 130px">${user.username}</div>
                             <div style="width: 130px">${user.email}</div>
-                            <div style="width: 300px; font-size: small">${user.profileImagePath}</div>
+                            <div style="width: 200px; font-size: small">${user.profileImagePath}</div>
                             <div style="width: 170px; font-size: small">${user.profileImageName}</div>
                             <div>
                                 <button onclick="updateUser(this, ${user.id})">수정</button>

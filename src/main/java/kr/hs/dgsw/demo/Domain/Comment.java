@@ -20,6 +20,9 @@ public class Comment {
     @GeneratedValue
     private Long id;
 
+    private String imagePath;
+    private String imageName;
+
     private Long userId;
     private String content;
 
@@ -33,12 +36,21 @@ public class Comment {
         this.content = content;
     }
 
+    public Comment(String imagePath, String imageName, Long userId, String content) {
+        this.imagePath = imagePath;
+        this.imageName = imageName;
+        this.userId = userId;
+        this.content = content;
+    }
+
     public Comment(Comment c){
         this.id = c.getId();
         this.userId = c.getUserId();
         this.content = c.getContent();
         this.created = c.getCreated();
         this.modified = c.getModified();
+        this.imagePath = c.getImagePath();
+        this.imageName = c.getImageName();
     }
 
 }
